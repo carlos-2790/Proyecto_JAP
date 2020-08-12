@@ -1,6 +1,30 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+const nombre= document.getElementById("name");
+const pass= document.getElementById("password");
+const form = document.getElementById("form");
+const parrafo = document.getElementById("warnings");
 
-});
+form.addEventListener("submit",function (event) {
+    
+
+
+    event.preventDefault();
+    let warnings="";
+    parrafo.innerHTML="";
+    let entrar= false;
+
+    if (nombre.value == null || nombre.value == "") {
+        warnings += `Debe ingresar el usuario <br>`;
+        entrar=true;
+    }
+    if (pass.value== null || pass.value=="") {
+            warnings += `Debe ingresar el password <br>`;
+            entrar=true;
+    }
+
+    if(entrar){
+        parrafo.innerHTML=warnings;
+    }else{
+        window.location.href="menu.html"
+    
+    }
+}); 

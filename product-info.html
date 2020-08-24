@@ -10,6 +10,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.bundle.min.js/ bootstrap.bundle.js" rel="stylesheet" >
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -18,21 +19,89 @@
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="menu.html">Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="usuario_nombre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </a>
+      
+        <div class= "dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item"  href="index.html">Salir</a>
+          <!--<a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>-->
+        </div>
+      </div>
     </div>
   </nav>
-  <div class="container p-5">
+ <!-- <div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
-  </div>
+  </div> -->
+  <main role="main">
+    <div class="container mt-5">
+      <div class="text-center p-4">
+        <h2>Descripción de los Productos</h2>
+        <p class="lead">Encontrarás aquí toda la información de los productos seleccionados.</p>
+        
+      </div>
+      <h3 id="productName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Descripción</dt>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
+
+        <dt>Costo </dt>
+        <dd>
+          <p id="productCost"></p>
+        </dd>
+
+        <dt>Moneda</dt>
+        <dd>
+          <p id="productCurrency"></p>
+        </dd>
+
+        <dt>Cantidad de autos vendidos</dt>
+        <dd>
+          <p id="producSoldtCount"></p>
+        </dd>
+
+
+        <dt>Categoría</dt>
+        <dd>
+          <p id="productCategory"></p>
+        </dd>
+
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+            
+            <dt>Productos relacionados</dt>
+            <dd>
+              <div class="row text-center text-lg-left pt-2" id="relatedProducts">
+          </div>
+        </dd>
+      </dl>
+      
+    </div>
+  </main>
+
+
+
+
+
+
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -50,6 +119,7 @@
       <div></div>
     </div>
   </div>
+  <script src="js/usuarioWeb.js"></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>

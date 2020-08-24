@@ -1,12 +1,12 @@
-const nombre= document.getElementById("name");
-const pass= document.getElementById("password");
-const form = document.getElementById("form");
-const parrafo = document.getElementById("warnings");
+const  nombre  = document.getElementById("name");
+const  pass    = document.getElementById("password");
+const  form    = document.getElementById("form");
+const  parrafo = document.getElementById("warnings");
+
+
 
 form.addEventListener("submit",function (event) {
     
-
-
     event.preventDefault();
     let warnings="";
     parrafo.innerHTML="";
@@ -24,7 +24,10 @@ form.addEventListener("submit",function (event) {
     if(entrar){
         parrafo.innerHTML=warnings;
     }else{
+        
+        localStorage.setItem('usuario',JSON.stringify(nombre.value));
         window.location.href="menu.html"
     
     }
 }); 
+

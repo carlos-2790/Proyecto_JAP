@@ -25,7 +25,7 @@ form.addEventListener("submit",function (event) {
         parrafo.innerHTML=warnings;
     }else{
         
-        localStorage.setItem('usuario',JSON.stringify(nombre.value));
+        localStorage.setItem('usuario',(nombre.value));
         window.location.href="menu.html"
     
     }

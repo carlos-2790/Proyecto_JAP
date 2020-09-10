@@ -1,6 +1,6 @@
 var product = {};
 var coments="";
-let arrays=[];
+let impHtml="";
 let infoHtml=" ";
 
 
@@ -25,24 +25,6 @@ function showImagesGallery(array){
     }
 }
 
-
-
-function showRelatedProducts(array){
-    let html=" ";
-
-    for(let i =0; i<array.length; i++){
-        let realted = array[i];
-
-        html+=`
-        <div  >
-            <div class="d-block mb-4 h-100">
-                <p>`+realted+'/'+`</p>
-            </div>
-        </div>
-        `
-       document.getElementById("relatedProducts").innerHTML=html;
-    }
-}
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -70,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             productCategoryHTML.innerHTML = product.category;
            
 
-            showRelatedProducts(product.relatedProducts);
+            //showRelatedProducts(product.images);
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
             
@@ -78,6 +60,34 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
+
+//Muestro los productos relacionados
+document.addEventListener("DOMContentLoaded", function(e){
+     getJSONData(PRODUCTS_URL).then(function(res){
+        let html=" ";
+         if(res.status === "ok"){
+            let array=res.data;
+        for(let i =1; i<array.length; i++){
+                let realted = array[i];
+             
+             html+=`
+             <div class="card" style="width: 18rem;">
+             <div class="card-body">
+             <h5 class="card-title">`+ realted.name +`</h5>
+             <p class="card-text">`+ realted.description+`</p>
+             <a href="products.html" class="btn btn-primary">Go Products</a>
+          </div>
+       </div> 
+             `
+             document.getElementById("relatedProducts").innerHTML=html;
+             
+         }
+        }
+     })
+});
+
+
+//Imprimo los comentarios
 document.addEventListener("DOMContentLoaded", function(ex){
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultado){
         if(resultado.status === "ok"){
@@ -103,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function(ex){
 });
 
 var d= new Date();
-var dia=d.getDay();
-dia=dia-1;
+var dia=d.getDate();
+
 var mes= d.getMonth();
 mes=mes+1;
 var anio= d.getUTCFullYear();
@@ -122,17 +132,15 @@ var seg= d.getSeconds();
  
 
 
-
+// agrego nuevos comentarios a los que ya estan impresos 
  function agregarComentario(){
 
-
+    
     if(puntaje.value == null ||puntaje.value == ""){
     
        alert("Debe ingresar un valor en Puntaje...")
     }
-   /*else if(puntaje.value !== /^[0-9]$/){
-        alert("El valor ingresado en Puntaje debe ser numérico...")
-    }*/
+      
     else if( puntaje.value <1 || puntaje.value >5){
         alert("El puntaje debe estar entre 1 y 5 ")
     }

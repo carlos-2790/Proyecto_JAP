@@ -2,7 +2,7 @@
 const imprimir = document.getElementById('usuario_nombre');
 
 // LE PASO EL "ID" DEL LABEL PARA IMPRIMIR EL NOMBRE DE USUARIO
-const usuComent = document.getElementById("usua");
+var usuComent = document.getElementById("usua");
 
 //TRAIGO EL NOMBRE DE USUARIO EN LA VARIABLE "usuario" DEL LOCALSTORAGE
 var usu =localStorage.getItem('usuario');
@@ -11,4 +11,4 @@ var usu =localStorage.getItem('usuario');
 imprimir.innerHTML=usu;
 
 //IMPRIMO EL USUARIO EN EL LABEL DEL COMENTARIO
-usuComent.innerHTML=`<label for="text" id="usua">`+usu+`</label>`;
+usuComent=`<label for="text" id="usua">`+usu+`</label>`;

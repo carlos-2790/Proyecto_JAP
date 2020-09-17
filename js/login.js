@@ -2,7 +2,7 @@ const  nombre  = document.getElementById("name");
 const  pass    = document.getElementById("password");
 const  form    = document.getElementById("form");
 const  parrafo = document.getElementById("warnings");
-
+window.localStorage.clear();
 
 
 form.addEventListener("submit",function (event) {

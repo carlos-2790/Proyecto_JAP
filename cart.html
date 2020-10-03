@@ -54,13 +54,45 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega:
-        25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="text-center p-4">
+      <h2>Articulos del Carrito</h2>
+      <p class="lead">Encontrarás aquí toda la información de los productos seleccionados.</p>
     </div>
+    <div id="name"></div>
+
+    <table class="table table-warning">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Articulos</th>
+          <th scope="col">Precio unit</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">SubTotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td><img id="img" src="img/tree1.jpg" width="100" height="100" class="img-thumbnail"></td>
+            <th scope="row" id="art"></th>
+            <td id="costoUnit"></td>
+            <td><input id="numero" type="number" class="center"  style="height: 30px; width: 40px;"
+            type="form-control" value=""></td>
+            <td id="subTotal"></td>
+        </tr>
+        <tr>
+          <td><img id="img2" src="img/prod3.jpg" width="100" height="100" class="img-thumbnail"></td>
+              <th scope="row" id="art2"></th>
+              <td id="costoUnit2"></td>
+              <td><input id="numero2"  type="number" class="center"  style="height: 30px; width: 40px;"
+              type="form-control" value=""></td>
+              <td id="subTotal2" ></td>
+          </tr>
+   
+
+
+
+
+
   </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -70,12 +102,13 @@
       <div></div>
     </div>
   </div>
+  <script src="js/cart.js"></script>
   <script src="js/usuarioWeb.js"></script>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+  
 </body>
 
 </html>

@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         var num = document.getElementById("numero").value;
 
         impSubtotal = document.getElementById("subTotal");
-        impSubtotal.innerHTML = num * 100;
+        impSubtotal.innerHTML =`UYU `+ num * 100;
         subT = 100 * num;
         subT = this.value
 
@@ -85,14 +85,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         var num2 = document.getElementById("numero2").value;
 
         impSub2 = document.getElementById("subTotal2");
-        impSub2.innerHTML = (40 * 12500) * num2;
+        impSub2.innerHTML =`UYU `+ (40 * 12500) * num2;
         subT2 = (Math.round(12500 * 40) * impSub2);
 
         subT2 = this.value;
         actualizarCostos();
 
     });
-
 
     document.getElementById("premiumradio").addEventListener("change", function () {
         porcentajeEnvio = 0.15;
@@ -109,20 +108,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         actualizarCostos()
     });
 
-
-
-
-
-
-
-
 });
-
-
-
-
-
-
 
 
 

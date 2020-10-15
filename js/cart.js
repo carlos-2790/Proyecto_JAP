@@ -11,7 +11,17 @@ let impSub2 = 0;
 let subT = 0;
 var subT2 = 0;
 var porcentajeEnvio = 0.15;
+/*document.getElementById("numero").value = 0;
+document.getElementById("numero2").value = 0;
+document.getElementById("subTotal").innerHTML = 0;
+document.getElementById("subTotal2").innerHTML = 0;
+document.getElementById("validationCalle").value = "";
+document.getElementById("validationNumero").value = "";
+document.getElementById("validationEsquina").value = "";
 
+document.getElementById("subtotalText").innerHTML = 0;
+document.getElementById("envioText").innerHTML = 0;
+document.getElementById("totalCostText").innerHTML = 0;*/
 
 
 
@@ -20,7 +30,7 @@ function actualizarCostos() {
     let subText = document.getElementById("subtotalText");
     let envText = document.getElementById("envioText");
     let totalText = document.getElementById("totalCostText");
-
+    let detalleHtml = document.getElementById("detalleCompra");
     //calculo el precio unitario del pino
     var t1 = (subT * 100);
     //calculo el precio unitario de autos y lo paso a pesos 
@@ -28,18 +38,12 @@ function actualizarCostos() {
     var t = (t2 + t1);
 
     let subtextHTML = t;
-    let costoEnvioHTML = (porcentajeEnvio * t);
+    let costoEnvioHTML = Math.round(porcentajeEnvio * t);
     let totalEnvioHTML = Math.round(t + costoEnvioHTML);
 
     subText.innerHTML = subtextHTML;
     envText.innerHTML = costoEnvioHTML;
     totalText.innerHTML = totalEnvioHTML;
-
-
-    let detalleHtml = document.getElementById("detalleCompra");
-    detalleHtml.innerHTML = ` Total a pagar $ ` + totalEnvioHTML;
-
-
 }
 
 
@@ -47,32 +51,91 @@ function actualizarCostos() {
 //funcion que se ejecuta cuando se hace click en el boton aceptar
 function btnAceptar() {
 
-    document.getElementById("calle").value="";
-    document.getElementById("numeroL").value="";
-    document.getElementById("esquina").value ="";
-    document.getElementById("detalleCompra").innerHTML = '';
-    document.getElementById("subtotalText").innerHTML = 0;
-    document.getElementById("envioText").innerHTML = 0;
-    document.getElementById("totalCostText").innerHTML = 0;
+    var entrar = false;
+    let calleValidar = document.getElementById("invalid-calle");
+    let numeroValidar = document.getElementById("invalid-numero");
+    let esquinaValidar = document.getElementById("invalid-esquina");
+    let calleHTML = document.getElementById("validationCalle");
+    let esquinaHTML = document.getElementById("validationEsquina");
+    let numeroHTML = document.getElementById("validationNumero");
+    let tarjetaHTML = document.getElementById("idTarjeta");
+    let vencimientoHTML = document.getElementById("idVencimiento");
+    let codigoDeSegHTMML = document.getElementById("idCodSeg");
+    let errorModalHTML = document.getElementById("errorModal");
+
+    if (calleHTML.value == null || calleHTML.value == "") {
+        calleValidar.innerHTML = 'Debe ingresar la calle';
+        entrar = true;
+    } else {
+        document.getElementById("invalid-calle").innerHTML = '';
+    }
+    if (numeroHTML.value == null || numeroHTML.value == '') {
+        numeroValidar.innerHTML = 'Debe ingresar el numero';
+        entrar = true;
+    } else {
+        document.getElementById("invalid-numero").innerHTML = '';
+    }
+    if (esquinaHTML.value == null || esquinaHTML.value == "") {
+        esquinaValidar.innerHTML = 'Debe ingresar la esquina';
+        entrar = true;
+    } else {
+        document.getElementById("invalid-esquina").innerHTML = '';
+
+    }
+    if (tarjetaHTML.value == null || tarjetaHTML.value == "") {
+        entrar = true;
+    }
+    if (vencimientoHTML.value == null || vencimientoHTML.value == "") {
+        entrar = true;
+    }
+    if (codigoDeSegHTMML.value == null || codigoDeSegHTMML.value == "") {
+        entrar = true;
+    }
+    if (entrar) {
+        errorModalHTML.innerHTML = 'Faltan campos por rellenar '
+    } else {
+        errorModalHTML.innerHTML = '<span style="color:green"> Datos Cargados exitosamente! </span> ';
+
+        document.getElementById("alert").innerHTML = '<div class="alert alert-success" role="alert"> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">' +
+            ' <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3' +
+            ' 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>' +
+            ' </svg>    Compra exitosa!  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span> </button></div>';
+    }
+
+}
+
+function btnLimpiarCampos() {
+
     document.getElementById("numero").value = 0;
     document.getElementById("numero2").value = 0;
     document.getElementById("subTotal").innerHTML = 0;
     document.getElementById("subTotal2").innerHTML = 0;
+    document.getElementById("validationCalle").value = "";
+    document.getElementById("validationNumero").value = "";
+    document.getElementById("validationEsquina").value = "";
+    document.getElementById("subtotalText").innerHTML = 0;
+    document.getElementById("envioText").innerHTML = 0;
+    document.getElementById("totalCostText").innerHTML = 0;
+    document.getElementById("idTarjeta").value = "";
+    document.getElementById("idVencimiento").value = ""
+    document.getElementById("idCodSeg").value = "";
+    document.getElementById("errorModal").innerHTML = "";
+    document.getElementById("alert").innerHTML = "";
 
 
 
 }
 
-
 document.addEventListener("DOMContentLoaded", function (e) {
 
 
-    //funcion que trae el numero del input, se lo paso a una variable  e imprimo en otro id el monto.
+    //funcion que trae el numero del input(cantidad de articulos), se lo paso a una variable  e imprimo en otro id el monto.
     document.getElementById("numero").addEventListener("change", function () {
         var num = document.getElementById("numero").value;
 
         impSubtotal = document.getElementById("subTotal");
-        impSubtotal.innerHTML =`UYU `+ num * 100;
+        impSubtotal.innerHTML = `UYU ` + num * 100;
         subT = 100 * num;
         subT = this.value
 
@@ -85,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         var num2 = document.getElementById("numero2").value;
 
         impSub2 = document.getElementById("subTotal2");
-        impSub2.innerHTML =`UYU `+ (40 * 12500) * num2;
+        impSub2.innerHTML = `UYU ` + (40 * 12500) * num2;
         subT2 = (Math.round(12500 * 40) * impSub2);
 
         subT2 = this.value;

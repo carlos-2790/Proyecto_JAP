@@ -3,26 +3,35 @@ let articulos = {};
 let articulos2 = {};
 let precioUnit = 0;
 let precioUnit2 = 0;
-let num = 0;
-let num2 = 0;
+var num = 0;
+var num2 = 0;
 let impSubtotal = 0;
 let impSub2 = 0;
 
 let subT = 0;
 var subT2 = 0;
 var porcentajeEnvio = 0.15;
-/*document.getElementById("numero").value = 0;
-document.getElementById("numero2").value = 0;
-document.getElementById("subTotal").innerHTML = 0;
-document.getElementById("subTotal2").innerHTML = 0;
-document.getElementById("validationCalle").value = "";
-document.getElementById("validationNumero").value = "";
-document.getElementById("validationEsquina").value = "";
 
-document.getElementById("subtotalText").innerHTML = 0;
-document.getElementById("envioText").innerHTML = 0;
-document.getElementById("totalCostText").innerHTML = 0;*/
 
+
+
+
+function eliminarPino() {
+
+    document.getElementById("fila1").remove();
+    subT = 0;
+    actualizarCostos();
+
+
+}
+
+function eliminarAuto() {
+
+    document.getElementById("fila2").remove();
+    subT2 = 0;
+    actualizarCostos();
+
+}
 
 
 function actualizarCostos() {
@@ -30,9 +39,10 @@ function actualizarCostos() {
     let subText = document.getElementById("subtotalText");
     let envText = document.getElementById("envioText");
     let totalText = document.getElementById("totalCostText");
-    let detalleHtml = document.getElementById("detalleCompra");
+
     //calculo el precio unitario del pino
     var t1 = (subT * 100);
+    
     //calculo el precio unitario de autos y lo paso a pesos 
     var t2 = (subT2 * 12500 * 40);
     var t = (t2 + t1);
@@ -48,7 +58,7 @@ function actualizarCostos() {
 
 
 
-//funcion que se ejecuta cuando se hace click en el boton aceptar
+//funcion que se ejecuta cuando se hace click en el boton aceptar y valida los campos 
 function btnAceptar() {
 
     var entrar = false;
@@ -84,12 +94,24 @@ function btnAceptar() {
     }
     if (tarjetaHTML.value == null || tarjetaHTML.value == "") {
         entrar = true;
+        tarjetaHTML.style.borderColor = "red";
+    } else {
+
+        tarjetaHTML.style.borderColor = "green";
     }
     if (vencimientoHTML.value == null || vencimientoHTML.value == "") {
         entrar = true;
+        vencimientoHTML.style.borderColor = "red";
+    } else {
+
+        vencimientoHTML.style.borderColor = "green";
     }
     if (codigoDeSegHTMML.value == null || codigoDeSegHTMML.value == "") {
         entrar = true;
+        codigoDeSegHTMML.style.borderColor = "red";
+    } else {
+
+        codigoDeSegHTMML.style.borderColor = "green";
     }
     if (entrar) {
         errorModalHTML.innerHTML = 'Faltan campos por rellenar '
@@ -100,17 +122,17 @@ function btnAceptar() {
             ' <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3' +
             ' 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>' +
             ' </svg>    Compra exitosa!  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span> </button></div>';
+            ' <span aria-hidden="true">&times;</span> </button></div>';
     }
 
 }
 
+// funcion que reinicia los campos
 function btnLimpiarCampos() {
 
-    document.getElementById("numero").value = 0;
-    document.getElementById("numero2").value = 0;
-    document.getElementById("subTotal").innerHTML = 0;
-    document.getElementById("subTotal2").innerHTML = 0;
+    document.getElementById("invalid-esquina").innerHTML = "";
+    document.getElementById("invalid-calle").innerHTML = "";
+    document.getElementById("invalid-numero").innerHTML = "";
     document.getElementById("validationCalle").value = "";
     document.getElementById("validationNumero").value = "";
     document.getElementById("validationEsquina").value = "";
@@ -118,8 +140,11 @@ function btnLimpiarCampos() {
     document.getElementById("envioText").innerHTML = 0;
     document.getElementById("totalCostText").innerHTML = 0;
     document.getElementById("idTarjeta").value = "";
+    document.getElementById("idTarjeta").style.borderColor = "red";
     document.getElementById("idVencimiento").value = ""
+    document.getElementById("idVencimiento").style.borderColor = "red";
     document.getElementById("idCodSeg").value = "";
+    document.getElementById("idCodSeg").style.borderColor = "red";
     document.getElementById("errorModal").innerHTML = "";
     document.getElementById("alert").innerHTML = "";
 
@@ -130,9 +155,9 @@ function btnLimpiarCampos() {
 document.addEventListener("DOMContentLoaded", function (e) {
 
 
-    //funcion que trae el numero del input(cantidad de articulos), se lo paso a una variable  e imprimo en otro id el monto.
+    //funcion que trae el numero del input(cantidad de pinos), se lo paso a una variable  e imprimo en otro id el monto.
     document.getElementById("numero").addEventListener("change", function () {
-        var num = document.getElementById("numero").value;
+        num = document.getElementById("numero").value;
 
         impSubtotal = document.getElementById("subTotal");
         impSubtotal.innerHTML = `UYU ` + num * 100;
@@ -143,9 +168,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     });
 
-    //funcion que trae el numero del input, se lo paso a una variable  e imprimo en otro id el monto.
+    //funcion que trae el numero del input(cantidad de autos), se lo paso a una variable  e imprimo en otro id el monto.
     document.getElementById("numero2").addEventListener("change", function () {
-        var num2 = document.getElementById("numero2").value;
+        num2 = document.getElementById("numero2").value;
 
         impSub2 = document.getElementById("subTotal2");
         impSub2.innerHTML = `UYU ` + (40 * 12500) * num2;
@@ -174,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 
-
+// imprimo los datos del json en las tablas html
 document.addEventListener("DOMContentLoaded", function (ex) {
     getJSONData(ARTICLES_CART).then(function (res) {
         if (res.status === "ok") {
